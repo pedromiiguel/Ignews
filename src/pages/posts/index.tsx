@@ -21,7 +21,7 @@ type PostProps = {
 
 export default function Posts({ posts }: PostProps) {
   const { data: session } = useSession();
-
+  const sessionData = session as any;
   return (
     <>
       <Head>
@@ -34,7 +34,7 @@ export default function Posts({ posts }: PostProps) {
             <Link
               key={post.slug}
               href={
-                session?.activeSubscription?.data?.status === 'active'
+                sessionData?.activeSubscription?.data?.status === 'active'
                   ? `posts/${post.slug}`
                   : `posts/preview/${post.slug}`
               }
